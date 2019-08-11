@@ -30,7 +30,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View row = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.calendar_row, parent, false);
+                    .inflate(R.layout.row, parent, false);
             return new ItemViewHolder(row);
 
     }
