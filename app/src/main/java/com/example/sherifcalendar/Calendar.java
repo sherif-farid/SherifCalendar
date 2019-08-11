@@ -39,7 +39,7 @@ public class Calendar extends RecyclerView {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.Calendar);
         startYear = typedArray.getInt(R.styleable.Calendar_StartYear,2019);
         startAfter= typedArray.getInt(R.styleable.Calendar_StartAfter,3);
-        enableRange = typedArray.getBoolean(R.styleable.Calendar_EnableRange,true);
+        enableRange = typedArray.getBoolean(R.styleable.Calendar_EnableRange,false);
         typedArray.recycle();
     }
     private void initAdapter (){
