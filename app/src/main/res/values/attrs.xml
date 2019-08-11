@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Calendar">
+        <attr name="StartAfter" format="integer" />
+        <attr name="EnableRange" format="boolean" />
+        <attr name="StartYear" format="integer" />
+
+    </declare-styleable>
+
+</resources>

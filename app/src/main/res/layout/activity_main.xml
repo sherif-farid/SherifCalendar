@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:Calendar="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mywhite"
+    android:layoutDirection="rtl"
+    tools:context=".MainActivity">
+
+    <com.example.sherifcalendar.Calendar
+        android:id="@+id/mCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        Calendar:StartYear="2019"
+        Calendar:StartAfter="2"
+        Calendar:EnableRange="true"
+        />
+</LinearLayout>
