@@ -11,7 +11,9 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class Calendar extends RecyclerView {
+public class Calendar extends RecyclerView implements View.OnClickListener{
+    private MyListener myListener ;
+    private CalendarClass aClass ;
    private int startYear  ;
     private  int startAfter ;
     private boolean enableRange ;
@@ -80,7 +82,7 @@ public class Calendar extends RecyclerView {
         this.setAdapter(adapter);
         this.setLayoutManager(gridLayoutManager);
         adapter.setmOnEntryClickListener((view, position, calendarClass) -> {
-
+        aClass = calendarClass ;
             boolean isCrossRange = true; // check if range contain blocked days
             for (int i = lastPosition; i <= position; i++) {
                 if (!arrayList.get(i).isAvailable()) {
@@ -154,5 +156,22 @@ public class Calendar extends RecyclerView {
     }
     boolean isEnableRange (){
         return enableRange ;
+    }
+    void setEnableRange(boolean enableRange){
+        this.enableRange = enableRange ;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (myListener != null) {
+            myListener.onRecyclerClick(aClass);
+        }
+
+    }
+    interface MyListener{
+        void onRecyclerClick(CalendarClass calendarClass);
+    }
+    void setClick (MyListener myListener){
+        this.myListener = myListener ;
     }
 }

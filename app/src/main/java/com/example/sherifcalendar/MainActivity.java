@@ -2,6 +2,7 @@ package com.example.sherifcalendar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +14,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.m);
         g = new Globals(this);
         mCalendar = findViewById(R.id.mCalendar);
+        mCalendar.setClick(new Calendar.MyListener() {
+            @Override
+            public void onRecyclerClick(CalendarClass calendarClass) {
+                g.myToast("currentDate="+calendarClass.getFullDate());
+            }
+        });
 
 
     }
