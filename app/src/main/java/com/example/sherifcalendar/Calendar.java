@@ -148,16 +148,16 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
         int y = x*7 ;
         return y == number;
     }
-    String getStart_date (){
+    public  String getStart_date (){
         return start_date ;
     }
-    String getEnd_date (){
+    public  String getEnd_date (){
         return end_date ;
     }
-    boolean isEnableRange (){
+    public  boolean isEnableRange (){
         return enableRange ;
     }
-    void setEnableRange(boolean enableRange){
+    public  void setEnableRange(boolean enableRange){
         this.enableRange = enableRange ;
     }
 
@@ -171,7 +171,7 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
     interface MyListener{
         void onRecyclerClick(CalendarClass calendarClass);
     }
-    void setClick (MyListener myListener){
+   public void setClick (MyListener myListener){
         this.myListener = myListener ;
     }
 }
