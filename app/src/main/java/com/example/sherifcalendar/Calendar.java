@@ -168,7 +168,7 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
         }
 
     }
-    interface MyListener{
+   public interface MyListener{
         void onRecyclerClick(CalendarClass calendarClass);
     }
    public void setClick (MyListener myListener){
