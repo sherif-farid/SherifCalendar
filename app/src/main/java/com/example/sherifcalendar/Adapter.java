@@ -18,6 +18,9 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<CalendarClass> dayList;
     private OnEntryClickListener mOnEntryClickListener ;
     private Globals g ;
+    private int lastPosition = 0 ;
+    private String from ="", to = "" , start_date ="",end_date ="";
+    private boolean enableRange = false ;
 
     Adapter(ArrayList<CalendarClass> dayList, Context context) {
         this.dayList = dayList;
@@ -60,14 +63,69 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public void onClick(View v) {
+          CalendarClass  calendarClass = dayList.get(getLayoutPosition()) ;
+          int position = getLayoutPosition();
+            boolean isCrossRange = true; // check if range contain blocked days
+            for (int i = lastPosition; i <= position; i++) {
+                if (!dayList.get(i).isAvailable()) {
+                    isCrossRange = false;
+                    break;
+                }
+            }
+
+            if (calendarClass.isDay() && calendarClass.isAvailable()) {
+                calendarClass.setChecked(true);
+                String date = calendarClass.getFullDate();
+                if (from.length() == 0) {
+                    from = date;
+                    start_date = date;
+                    end_date = "";
+                    // g.myToast(from + to);
+                    lastPosition = position;
+                    dayList.get(position).setChecked(true);
+                    for (int i = 0; i < dayList.size(); i++) {
+                        if (i != position) {
+                            dayList.get(i).setChecked(false);
+                        }
+                    }
+                } else if (to.length() == 0 && position > lastPosition && isCrossRange && enableRange) {
+                    to = date;
+                    end_date = date;
+                    //  g.myToast(from + to);
+                    // add background in range
+                    for (int i = lastPosition; i < position; i++) {
+                        dayList.get(i).setInRange(true);
+                    }
+                    //end part
+                    lastPosition = position;
+                    dayList.get(position).setChecked(true);
+                } else {
+                    to = "";
+                    end_date = "";
+                    from = date;
+                    start_date = date;
+                    // g.myToast(from + to);
+                    lastPosition = position;
+                    for (int i = 0; i < dayList.size(); i++) {
+                        if (i != position) {
+                            dayList.get(i).setChecked(false);
+                            dayList.get(i).setInRange(false);
+                        }
+                    }
+                }
+                notifyDataSetChanged();
+            } else if (!calendarClass.isAvailable() && calendarClass.isDay()) {
+                g.myToast("لا يمكن الحجز في هذا التاريخ");
+            }
+
             if(mOnEntryClickListener!=null){
-                mOnEntryClickListener.onEntryClick(v,getLayoutPosition() , dayList.get(getLayoutPosition()));
+                mOnEntryClickListener.onEntryClick(v,getLayoutPosition() , from , to);
 
             }
         }
     }
     public interface OnEntryClickListener{
-        void onEntryClick(View view, int position , CalendarClass calendarClass);
+        void onEntryClick(View view, int position ,String from , String to);
     }
     void setmOnEntryClickListener(OnEntryClickListener onEntryClickListener){
         mOnEntryClickListener=onEntryClickListener;
