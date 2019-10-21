@@ -82,7 +82,7 @@ public class Calendar extends RecyclerView implements Adapter.OnEntryClickListen
          adapter = new com.example.sherifcalendar.Adapter(arrayList,getContext());
         this.setAdapter(adapter);
         this.setLayoutManager(gridLayoutManager);
-       /* adapter.setmOnEntryClickListener((view, position, calendarClass) -> {
+        adapter.setmOnEntryClickListener((view, position, calendarClass) -> {
 
         aClass = calendarClass ;
             boolean isCrossRange = true; // check if range contain blocked days
@@ -137,7 +137,7 @@ public class Calendar extends RecyclerView implements Adapter.OnEntryClickListen
             } else if (!calendarClass.isAvailable() && calendarClass.isDay()) {
                 g.myToast("لا يمكن الحجز في هذا التاريخ");
             }
-        });*/
+        });
     }
     private boolean isLargeYear (int year){
         int outOfDiv = year / 4;
