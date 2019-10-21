@@ -2,10 +2,10 @@ package com.example.sherifcalendar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -98,7 +98,7 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
                     from = date;
                     start_date = date;
                     end_date = "";
-                    g.myToast(from + to);
+                   // g.myToast(from + to);
                     lastPosition = position;
                     arrayList.get(position).setChecked(true);
                     for (int i = 0; i < arrayList.size(); i++) {
@@ -107,11 +107,9 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
                         }
                     }
                 } else if (to.length() == 0 && position > lastPosition && isCrossRange && enableRange) {
-                    String temp = from;
-                    from = " من " + temp;
-                    to = " الى " + date;
+                    to = date;
                     end_date = date;
-                    g.myToast(from + to);
+                  //  g.myToast(from + to);
                     // add background in range
                     for (int i = lastPosition; i < position; i++) {
                         arrayList.get(i).setInRange(true);
@@ -124,7 +122,7 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
                     end_date = "";
                     from = date;
                     start_date = date;
-                    g.myToast(from + to);
+                   // g.myToast(from + to);
                     lastPosition = position;
                     for (int i = 0; i < arrayList.size(); i++) {
                         if (i != position) {
@@ -164,14 +162,14 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (myListener != null) {
-            myListener.onRecyclerClick(aClass);
+            myListener.onRecyclerClick(aClass , from , to);
         }
 
     }
    public interface MyListener{
-        void onRecyclerClick(CalendarClass calendarClass);
+        void onRecyclerClick(CalendarClass calendarClass , String from , String to);
     }
-   public void setClick (MyListener myListener){
+   public void setOnMyClick (MyListener myListener){
         this.myListener = myListener ;
     }
 }

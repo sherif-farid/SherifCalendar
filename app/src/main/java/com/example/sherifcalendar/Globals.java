@@ -15,7 +15,7 @@ public class Globals {
     }
 
     public Drawable blueShape60() {
-        return shape(R.color.myDarkBlue, getScreenDpi(60), 0, 0);
+        return shape(R.color.myDarkBlue, getScreenDpi(5), 0, 0);
     }
 
     public Drawable blueShape60Right() {

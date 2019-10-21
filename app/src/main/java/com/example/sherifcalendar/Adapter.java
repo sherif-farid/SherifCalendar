@@ -3,8 +3,8 @@ package com.example.sherifcalendar;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,7 +87,7 @@ public class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 holder.day.setBackground(g.blueShape60());
                 holder.day.setTextColor(context.getResources().getColor(R.color.mywhite));
             } else if (testClass.isInRange()) {
-                holder.day.setBackground(g.shapeColorString("#310090FF", 0));
+                holder.day.setBackground(g.shape(R.color.myDarkBlue, 0,0,0));
             } else {
                 holder.day.setBackground(null);
                 holder.day.setTextColor(context.getResources().getColor(R.color.textBlackColor));
