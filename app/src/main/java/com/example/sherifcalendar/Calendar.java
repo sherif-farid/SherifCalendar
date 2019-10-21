@@ -11,7 +11,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class Calendar extends RecyclerView implements View.OnClickListener{
+public class Calendar extends RecyclerView implements Adapter.OnEntryClickListener{
     private MyListener myListener ;
     private CalendarClass aClass ;
    private int startYear  ;
@@ -20,6 +20,7 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
     private String from = "", start_date ="",to = "", end_date ="";
     private int lastPosition = 0;
     private Globals g ;
+    private com.example.sherifcalendar.Adapter adapter ;
     public Calendar(@NonNull Context context) {
         super(context);
         initAdapter();
@@ -78,10 +79,11 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
                 }
             }
         });
-        com.example.sherifcalendar.Adapter adapter = new com.example.sherifcalendar.Adapter(arrayList,getContext());
+         adapter = new com.example.sherifcalendar.Adapter(arrayList,getContext());
         this.setAdapter(adapter);
         this.setLayoutManager(gridLayoutManager);
         adapter.setmOnEntryClickListener((view, position, calendarClass) -> {
+
         aClass = calendarClass ;
             boolean isCrossRange = true; // check if range contain blocked days
             for (int i = lastPosition; i <= position; i++) {
@@ -160,16 +162,19 @@ public class Calendar extends RecyclerView implements View.OnClickListener{
     }
 
     @Override
-    public void onClick(View v) {
+    public void onEntryClick(View view, int position, CalendarClass calendarClass) {
         if (myListener != null) {
             myListener.onRecyclerClick(aClass , from , to);
         }
-
     }
-   public interface MyListener{
+
+    public interface MyListener{
         void onRecyclerClick(CalendarClass calendarClass , String from , String to);
     }
    public void setOnMyClick (MyListener myListener){
         this.myListener = myListener ;
+    }
+    public com.example.sherifcalendar.Adapter getMyAdapter (){
+        return adapter ;
     }
 }
