@@ -30,4 +30,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // recycler view
     implementation 'com.google.android.material:material:1.2.1'
+    // new commit will shown in 1.1.0
 }
